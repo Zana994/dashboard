@@ -1,0 +1,317 @@
+
+@import "./reset";
+@import "./fonts";
+@import "./variables";
+
+
+html { height: 100%;}
+body {
+    min-height: 100%;
+    background-color: $bg-color-dark;
+    font-size: $body-font-size;
+
+    h2, h1, h3 { color: $white-text-dark;}
+    p, h4 { color: $blue-text-dark;}
+}
+body.white { 
+    background-color: $bg-color-white;
+    h2, h1, h3 { color: $dark-text-white;}
+    p, h4 { color: $blue-text-white;}
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    & > p { 
+        @include text-style(Inter-Bold, 11px);
+        text-align: center;
+        padding-top: 1rem;
+    }
+}
+
+.frame {
+    width: 75%;
+    margin: auto;
+}
+
+/* TOP TITLE AND TOGGLE */
+
+
+.bg-pattern {
+    background-color: $top-bg-dark;
+    width: 100%;
+    height: 32vh;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    p { @include text-style(Inter-Bold, $body-font-size - 1px);}
+}
+.bg-pattern.white { background-color: $top-bg-white; }
+
+.title {
+    @include flex-spacebtw();
+    padding: 2rem 0 0 0;
+    h2 { @include text-style(Inter-Bold, 1.5rem);}
+    .toggle {
+        width: 150px;
+        @include flex-spacebtw();
+        p { @include text-style(Inter-Bold, $body-font-size - 1px);}
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 27px;
+        input { display: none;}
+        .slider {
+            @include positionAbsolute(0, 0, 0, 0);
+            border-radius: 34px;
+            background-image: linear-gradient(to right, $toggle-dark1, $toggle-dark2);
+            cursor: pointer;
+            &::before {
+                content: '';
+                @include positionAbsolute(2.5px, 0, 2px, 0);
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                background-color: $bg-color-dark;
+                transition: .4s;
+            }
+        }
+    }
+    input:checked + .slider {
+        background-image: none;
+        background: $toggle-white
+    }
+    input:checked + .slider::before {
+        transform: translateX(34px);
+        background-color: white;
+    }
+}
+
+/* FIRST GRID CONTAINER */
+
+.grid-container-1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem 1.5rem;
+    position: relative;
+    top: -12vh;
+    z-index: 11;
+    .media { 
+        @include flex-center(row);
+        padding: 1.5rem 0 0.8rem 0;
+    }
+}
+
+.grid-item {
+    position: relative;
+    @include flex-center(column);
+    span:nth-child(1) {
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin-right: 0.5rem;
+    }
+    p { @include text-style(Inter-Bold, 0.7rem);}
+    h1 {
+        @include text-style(Inter-Bold, 3rem);
+        padding-bottom: 0.2rem;
+    }
+    h4 {
+        @include text-style(Inter-Thin, 0.6rem);
+        text-transform: uppercase;
+        letter-spacing: 0.3rem;
+        padding-bottom: 1.4rem;
+    }
+    .today {
+        display: block;
+        @include flex-center(row);
+        @include span-style($lime-green, Inter-Bold, 0.7rem);
+        padding-bottom: 1.4rem;
+        &::before {
+            content: '';
+            width: 8px;
+            height: 4px;
+            background: url(images/icon-up.svg) center center no-repeat;
+            margin-right: 0.3rem;
+        }
+    }
+    &::before {
+        content: '';
+        @include positionAbsolute(0, 0, 0, 0);
+        background-color: $card-bg-dark;
+        border-radius: 5px;
+        border-top: 3.4px solid;
+        z-index: -1;
+    }
+    &:hover {
+        cursor: pointer;
+        &::before { background-color: hsl(234, 23%, 26%);}
+    }
+}
+.grid-item.white-card {
+    &::before { background-color: $card-bg-white;}
+    &:hover {
+        &::before { background-color: hsl(240, 31%, 89%);}
+    }
+}
+
+.item-1 {
+    span:nth-child(1) { background: url(images/icon-facebook.svg) center center no-repeat; }
+    &::before { border-top-color: $facebook;}
+}
+.item-2 { 
+    span:nth-child(1) { background: url(images/icon-twitter.svg) center center no-repeat;}
+    &::before { border-top-color: $twitter;}
+}
+.item-3 {
+    background-image: linear-gradient(to right, $instagram-color1, $instagram-color2);
+    border-radius: 5px;
+    background-clip: padding-box;
+    .content {
+        width: 100%;
+        @include flex-center(column);
+        span:nth-child(1) { background: url(images/icon-instagram.svg) center center no-repeat;}
+        z-index: 11;
+    }
+    &::before {
+        @include positionAbsolute(0, -1px, -1px, -1px);
+        border-top: 3.4px solid transparent;
+        background-clip: content-box;
+        z-index: 1;
+    }
+}
+.item-4 {
+    span:nth-child(1) { background: url(images/icon-youtube.svg) center center no-repeat;}
+    span.today {
+        color: $bright-red;
+        &::before { background: url(images/icon-down.svg) center center no-repeat;}
+    }
+    &::before { border-top-color: $youtube;}
+}
+
+/* SECOND GRID CONTAINER */
+
+.second-container {
+    margin-top: -2.7rem;
+    h3 { @include text-style(Inter-Bold, 1.3rem);}
+    .grid-container-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem 1.5rem;
+        margin-top: 1.5rem;
+        div.media {
+            @include flex-spacebtw();
+            padding: 1rem 1.5rem;
+            p { @include text-style(Inter-Bold, $body-font-size - 2px);}
+            & > span {
+                display: block;
+                width: 20px;
+                height: 20px;
+            }
+        }
+        div.numbers {
+            @include flex-spacebtw();
+            padding: 0 1.5rem 1rem 1.5rem;
+            & > span { @include flex-center(row);}
+            h1 { @include text-style(Inter-Bold, 1.5rem);}
+        }
+        .grid-items { position: relative;}
+    }
+}
+.grid-items::before {
+    content: '';
+    @include positionAbsolute(0, 0, 0, 0);
+    background-color: $card-bg-dark;
+    z-index: -1;
+    border-radius: 5px;
+}
+.grid-items:hover {
+    cursor: pointer;
+    &::before { background-color: hsl(234, 23%, 26%);}
+}
+.grid-items.white-card-2 {
+    &::before { background-color: $card-bg-white;}
+    &:hover {
+        &::before { background-color: hsl(240, 31%, 89%);}
+    }
+}
+
+.num-1 {
+    .media > span { background: url(images/icon-facebook.svg) center center no-repeat;}
+    .numbers > span {
+        @include span-style($lime-green, Inter-Bold, 0.7rem);
+        &::before { @include before-style(url(images/icon-up.svg));}
+    }
+}
+.num-2 {
+    .media > span { background: url(images/icon-facebook.svg) center center no-repeat;}
+    .numbers > span {
+        @include span-style($bright-red, Inter-Bold, 0.7rem);
+        &::before { @include before-style(url(images/icon-down.svg));}
+    }
+}
+.num-3, .num-4 {
+    .media > span { background: url(images/icon-instagram.svg) center center no-repeat;}
+    .numbers > span {
+        @include span-style($lime-green, Inter-Bold, 0.7rem);
+        &::before { @include before-style(url(images/icon-up.svg));}
+    }
+}
+.num-5, .num-6 {
+    .media > span { background: url(images/icon-twitter.svg) center center no-repeat;}
+    .numbers > span {
+        @include span-style($lime-green, Inter-Bold, 0.7rem);
+        &::before { @include before-style(url(images/icon-up.svg));}
+    }
+}
+.num-7, .num-8 {
+    .media > span { background: url(images/icon-youtube.svg) center center no-repeat;}
+    .numbers > span {
+        @include span-style($bright-red, Inter-Bold, 0.7rem);
+        &::before { @include before-style(url(images/icon-down.svg));}
+    }
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 700px) {
+    .title {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 150px;
+        .toggle { 
+            width: 100%;
+            border-top: 1px solid $blue-text-dark;
+            padding-top: 1rem;
+        }
+    }
+    .bg-pattern {
+        p:nth-child(2) {
+            position: relative;
+            top: -5.5rem;
+        }
+    }
+    .grid-container-1 { top: -5vh;}
+    .second-container { margin-top: 0;}
+}
+
+@media only screen and (max-width: 425px) {
+    .title {
+        h2 { font-size: 1.3rem;}
+    }
+    .grid-container-1 {
+        .grid-item {
+            h1 { font-size: 2.5rem;}
+        }
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .title {
+        h2 { font-size: 1rem;}
+    }
+}
+

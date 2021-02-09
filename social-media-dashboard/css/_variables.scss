@@ -1,0 +1,62 @@
+$body-font-size: 14px;
+
+$lime-green: hsl(163, 72%, 41%);
+$bright-red: hsl(356, 69%, 56%);
+$facebook: hsl(208, 92%, 53%);
+$twitter: hsl(203, 89%, 53%);
+$instagram-color1: hsl(37, 97%, 70%);
+$instagram-color2: hsl(329, 70%, 58%);
+$youtube: hsl(348, 97%, 39%);
+
+/* DARK THEME */
+
+$bg-color-dark: hsl(230, 17%, 14%);
+$top-bg-dark: hsl(232, 19%, 15%);
+$card-bg-dark: hsl(228, 28%, 20%);
+$blue-text-dark: hsl(228, 34%, 66%);
+$white-text-dark: hsl(0, 0%, 100%);
+$toggle-dark1: hsl(210, 78%, 56%);
+$toggle-dark2: hsl(146, 68%, 55%);
+
+/* WHITE THEME */ 
+
+$bg-color-white: hsl(0, 0%, 100%);
+$top-bg-white: hsl(225, 100%, 98%);
+$card-bg-white: hsl(227, 47%, 96%);
+$blue-text-white: hsl(228, 12%, 44%);
+$dark-text-white: hsl(230, 17%, 14%);
+$toggle-white: hsl(230, 22%, 74%);
+
+@mixin flex-spacebtw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin flex-center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+@mixin text-style($family, $size) {
+    font-family: $family;
+    font-size: $size;
+}
+@mixin span-style($color, $family, $size) {
+    @include text-style($family, $size);
+    color: $color;
+}
+@mixin positionAbsolute($top, $bottom, $left, $right) {
+    position: absolute;
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+}
+@mixin before-style($background) {
+    content: '';
+    width: 8px;
+    height: 4px;
+    background: $background center center no-repeat;
+    margin-right: 0.3rem;   
+}
