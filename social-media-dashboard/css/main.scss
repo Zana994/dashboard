@@ -27,7 +27,8 @@ body.white {
     & > p { 
         @include text-style(Inter-Bold, 11px);
         text-align: center;
-        padding-top: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
     }
 }
 
